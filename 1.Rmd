@@ -1,10 +1,10 @@
-Text in Time - Rudiments
+Text in Time - Chapter 0 - Rudiments
 ========================================================
 
-A manual of quantification and visualization of text data using recurrence plots and recurrence quantification methods.
+This manual is designed primarily for researchers in the social sciences who work with text, transcripts, or related data. The manual is focused on the quantification and visualization of the temporal organization of these data sources. I will also describe the relationships between the approaches of this manual to techniques in computational linguistics, natural language processing, and other statistical domains. Recurrence quantification has conceptual and computational overlap with many techniques in those domains. In this first section, we introduce the rudiments. Starting with some very simple text data, we will showcase how to import, convert, and plot some simple aspects of raw text.
 
-To begin, let's get some data.
-
+To begin, let's get some data. We will start the manual with what is recognized as a sort of tradition in recurrence quantification of text. In the early 2000's, a demonstration of recurrence applied to text was conducted using Dr. Seuss' Green Eggs and Ham. Its small number of unique words (50) and characteristic weaving of rhyme and repetition make it a useful first demonstration. We uphold this tradition here.
+ 
 ```{r}
 options(warn = -1)
 library(tm)
