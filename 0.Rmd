@@ -1,0 +1,6 @@
+Language in Time - Introduction
+========================================================
+
+This manual is designed primarily for researchers in the social sciences who work with text, transcripts, or related data. The manual is focused on the quantification and visualization of the temporal organization of these data sources. I will also describe the relationships between the approaches of this manual to techniques in computational linguistics, natural language processing, and other statistical domains. Recurrence quantification has conceptual and computational overlap with many techniques in those domains. In this first section, we introduce the rudiments. Starting with some very simple text data, we will showcase how to import, convert, and plot some simple aspects of raw text.
+
+This manual uses the `crqa` library written primarily by Moreno Coco with some help from me, and with considerable inspiration from the impressive dynamics group at the University of Cincinnati (Jay Holden, Mike Richardson, Kevin Shockley, Mike Riley, and Guy Van Orden). 
