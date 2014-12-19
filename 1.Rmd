@@ -28,12 +28,37 @@ Our sequence of characters, encoded with unique identifiers.
 plot(charSeries,type='l')
 ```
 
-Note that we convert character to a series of nominal codes. These numeric codes represent the character types, and converting the characters to numeric codes allows us to utilize all the standard `crqa` library functions for reasons that will become quite clear below. 
+Note that we convert characters to a series of nominal codes. These numeric codes represent the character types, and converting the characters to numeric codes allows us to utilize all the standard `crqa` library functions for reasons that will become quite clear below. 
 
 The core data structure that underlies all recurrence quantification is the recurrence plot (RP). Let's define it with respect to our character time series. A recurrence plot (RP) is the set of points (i,j) such that `charSeries[i]==charSeries[j]`. Building it with the `crqa` library is quite easy. 
 
 ```{r}
 crqaResults  = crqa(charSeries,charSeries,1,3,1,.0001,F,2,2,0,F,F) # we'll explain parameters later
-RP = crqaResults$RP # let's get the plot out of the results
-image(RP, xlab = "", ylab = "", xaxt = "n", yaxt = "n", col = c("white", "blue"), cex = 2)
+RP = 1*as.matrix(crqaResults$RP) # convert into numeric non-sparse matrix
+ij = which(RP==1,arr.ind=T) # get coordinates
+plot(ij[,1],ij[,2],
+     xlab='time (character)',ylab='time (character)',pch=15,cex=.5)
 ```
+
+So the RP is just a collection of points representing the instances at which the 
+"system" (here, Theodor Geisel, I guess) is revisiting particular states that we are
+interested in (in this case, characters). To get a sense of how this works,
+let's grab the especially repetitive sequencing taking place about midway into
+Green Eggs and Ham.
+
+```{r}
+crqaResults  = crqa(charSeries[460:535],charSeries[460:535],1,1,1,.0001,F,2,2,0,F,F) # we'll explain parameters later
+RP = 1*as.matrix(crqaResults$RP) # convert into numeric non-sparse matrix
+ij = which(RP==1,arr.ind=T) # get coordinates
+plot(ij[,1],ij[,2],
+     xlab='time (character)',ylab='time (character)',
+     pch=15,cex=.5,col=rgb(.8,.8,.8))
+text(ij[,1],ij[,2],chars[ij[,1]+458],cex=.8)
+```
+
+
+
+
+
+
+
