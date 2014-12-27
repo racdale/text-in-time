@@ -25,10 +25,26 @@ charSeries = as.vector(sapply(chars,function(x) {
 Our sequence of characters, encoded with unique identifiers.
 
 ```{r}
-plot(charSeries,type='l')
+plot(charSeries,type='p')
 ```
 
-Note that we convert characters to a series of nominal codes. These numeric codes represent the character types, and converting the characters to numeric codes allows us to utilize all the standard `crqa` library functions for reasons that will become quite clear below. 
+This plot isn't especially meaningful, but it does give us an opportunity to draw our first connection to NLP and corpus linguistics. A well-known regularity referred to as Heaps' Law relates the number of unique words in a document to the length of that document. The characteristic rise and gradual asymptote of the plot you see above reflects this law. Our code above uniquely numbers words in order. Since words are finite, the occurrence of a new identifier becomes less likely as the document is processed. The relationship between document length and the rise of numeric identifiers is $T(n) = an^b$, with a and b parameters determined by observation. Take a look at how the moving average of this function. You can see the average identifier top off pretty quickly, especially for so repetitive and short a text as Green Eggs and Ham!
+
+```{r}
+library(zoo)
+plot(rollmeanr(charSeries,25),type='p')
+```
+
+A typical way to display this is to show the maximum identifier value as a function of the length of our consideration. Like this:
+
+```{r}
+maxByN = apply(data.frame(1:length(charSeries)),1,function(x) {
+  return(max(charSeries[1:x]));
+})
+plot(maxByN,type='p')
+```
+
+In any case, note that we convert characters to a series of nominal codes. These numeric codes represent the character types, and converting the characters to numeric codes allows us to utilize all the standard `crqa` library functions for reasons that will become quite clear below. 
 
 The core data structure that underlies all recurrence quantification is the recurrence plot (RP). Let's define it with respect to our character time series. A recurrence plot (RP) is the set of points (i,j) such that `charSeries[i]==charSeries[j]`. Building it with the `crqa` library is quite easy. 
 
