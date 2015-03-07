@@ -75,7 +75,7 @@ Green Eggs and Ham.
 
 ```{r}
 crqaResults  = crqa(charSeries[460:535],charSeries[460:535],1,1,1,.0001,F,2,2,0,F,F) # we'll explain parameters later
-RP = 1*as.matrix(crqaResults$RP) # convert into numeric non-sparse matrix
+RP = as.matrix(crqaResults$RP) # convert into numeric non-sparse matrix
 ij = which(RP==1,arr.ind=T) # get coordinates
 plot(ij[,1],ij[,2],
      xlab='time (character)',ylab='time (character)',
@@ -87,6 +87,20 @@ text(ij[,1],ij[,2],chars[ij[,1]+458],cex=.8)
 This shows you the specific character sequences that are being revisited by the story (note: grayed points represent spaces). The RP represents these patterns that are repeated as diagonal lines on the plot. Single points would represent single letters being repeated in an isolated fashion. Naturally, there will be a long line up the middle of this plot because by definition `charSeries[i]==charSeries[i]', and so we have what is called the "line of incidence." This will become crucial letter, but in this initial demonstration of "auto-recurrence" -- which means we're building an RP for just one time series compared to itself -- it is trivially filled with points. The more interest points are the off-diagonal lines that show repetition of the system's character states. In the plot above, you can see a prominent "I do not like them" on either side of the plot. Of course, the story is filled with such repetition. A well-known application of this visualization was conducted by Orsucci et al. (2001), where this poem along with other from other languages are compared.
 
 An RP is also symmetrical, for obvious reasons, because if `charSeries[i]==charSeries[j]` then `charSeries[j]==charSeries[i]`, and so we get these elegant looking Rorschach kind of symmetries. The symmetry will break down when we move beyond recurrence with a single time series (auto-recurrence) and plot the recurrence between two different time series (cross recurrence).
+
+Let's take a quick look at the RP via much shorter time series to build your intuition about the "textures" that emerge on them. To start, let's build a plot that consists of a series of diagonal lines. These would reflect a system that is repeatedly revisiting a prior sequence at various times. 
+
+```{r}
+
+charSeries = c(1,2,3,4,1,2,3,4,1,2,3,4,1,2,3,4)
+crqaResults  = crqa(charSeries,charSeries,1,1,1,.0001,F,2,2,0,F,F) # we'll explain parameters later
+RP = as.matrix(crqaResults$RP) # convert into numeric non-sparse matrix
+ij = which(RP==1,arr.ind=T) # get coordinates
+plot(ij[,1],ij[,2],
+     xlab='time',ylab='time',pch=15,cex=1)
+
+```
+
 
 
 
