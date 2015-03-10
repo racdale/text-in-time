@@ -1,4 +1,7 @@
-Language in Time - Chapter 1 - Rudiments
+---
+output: pdf_document
+---
+Language in Time - 1 - Rudiments
 ========================================================
 
 To begin, let's get some data into R. We will start the manual with what is recognized as a sort of tradition in recurrence quantification of text. In the early 2000's, a demonstration of recurrence applied to text was conducted using Dr. Seuss' Green Eggs and Ham. Its small number of unique words (50) and characteristic weaving of rhyme and repetition make it a useful first demonstration. We uphold this tradition here.
@@ -101,10 +104,43 @@ plot(ij[,1],ij[,2],
 
 ```
 
+If we have "palindromic" patterns -- a system that is reversing direction in its dynamics -- this shows up as perpendicular lines in the plot. A palindrome itself looks like this:
 
+```{r}
 
+charSeries = c(1,2,3,4,5,6,7,6,5,4,3,2,1)
+crqaResults  = crqa(charSeries,charSeries,1,1,1,.0001,F,2,2,0,F,F) # we'll explain parameters later
+RP = as.matrix(crqaResults$RP) # convert into numeric non-sparse matrix
+ij = which(RP==1,arr.ind=T) # get coordinates
+plot(ij[,1],ij[,2],
+     xlab='time',ylab='time',pch=15,cex=1)
 
+```
 
+Plots that have "blocks" or wide swaths of occupired points reflect a system which is "trapped" in one state. This may reflect a stable state of the system that is attractor-like.
 
+```{r}
+
+charSeries = c(1,2,3,4,4,4,4,5,6,6,6,6,7,8,9)
+crqaResults  = crqa(charSeries,charSeries,1,1,1,.0001,F,2,2,0,F,F) # we'll explain parameters later
+RP = as.matrix(crqaResults$RP) # convert into numeric non-sparse matrix
+ij = which(RP==1,arr.ind=T) # get coordinates
+plot(ij[,1],ij[,2],
+     xlab='time',ylab='time',pch=15,cex=1)
+
+```
+
+Horizontal and vertical lines connote the same sort of thing: The system is, for a time, stable in some sequence of the same state. Lines occur because the system, relative to another point in time, has "moved on" from that particular state.
+
+```{r}
+
+charSeries = c(1,2,3,4,5,3,3,3,6,7,8,9)
+crqaResults  = crqa(charSeries,charSeries,1,1,1,.0001,F,2,2,0,F,F) # we'll explain parameters later
+RP = as.matrix(crqaResults$RP) # convert into numeric non-sparse matrix
+ij = which(RP==1,arr.ind=T) # get coordinates
+plot(ij[,1],ij[,2],
+     xlab='time',ylab='time',pch=15,cex=1)
+
+```
 
 
