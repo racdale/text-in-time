@@ -1,11 +1,18 @@
 ---
 output: pdf_document
+header-includes: \usepackage{graphicx}
 ---
 Language in Time - 1 - Rudiments
 ========================================================
 
 To begin, let's get some data into R. We will start the manual with what is recognized as a sort of tradition in recurrence quantification of text. In the early 2000's, a demonstration of recurrence applied to text was conducted using Dr. Seuss' Green Eggs and Ham. Its small number of unique words (50) and characteristic weaving of rhyme and repetition make it a useful first demonstration. We uphold this tradition here.
- 
+
+```{r global_option,include=F}
+#http://kbroman.org/knitr_knutshell/pages/Rmarkdown.html
+knitr::opts_chunk$set(fig.width=4, fig.height=4,fig.align='center')
+
+```
+
 ```{r}
 setwd('~/Dropbox/new.projects/recurrence.recipes')
 options(warn = -1)
