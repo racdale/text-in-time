@@ -13,11 +13,12 @@ knitr::opts_chunk$set(fig.width=4, fig.height=4,fig.align='center')
 
 ```
 
-```{r}
+```{r message=F}
 setwd('~/Dropbox/new.projects/recurrence.recipes')
 options(warn = -1)
 library(crqa)
 library(tm)
+library(zoo)
 rawText = readChar('data/Sam I Am.txt',
   file.info('data/Sam I Am.txt')$size)
 ```
@@ -41,7 +42,6 @@ plot(charSeries,type='p',ylab='Character code',xlab='Character order')
 This plot isn't especially meaningful, but it does give us an opportunity to draw our first connection to NLP and corpus linguistics. A well-known regularity referred to as Heaps' Law relates the number of unique words in a document to the length of that document. The characteristic rise and gradual asymptote of the plot you see above reflects this law. Our code above uniquely numbers words in order. Since words are finite, the occurrence of a new identifier becomes less likely as the document is processed. The relationship between document length and the rise of numeric identifiers is $T(n) = an^b$, with a and b parameters determined by observation. Take a look at how the moving average of this function. You can see the average identifier top off pretty quickly, especially for so repetitive and short a text as Green Eggs and Ham!
 
 ```{r}
-library(zoo)
 plot(rollmeanr(charSeries,25),type='p',ylab='Moving avg. of character codes',xlab='Character order')
 ```
 
@@ -149,5 +149,67 @@ plot(ij[,1],ij[,2],
      xlab='time',ylab='time',pch=15,cex=1)
 
 ```
+
+So what is this good for? Well, Orsucci et al. (2001) compared different poetry and proposed some theories of poetic change and cross-cultural patterns. In fact, any hypothesis for which one might use simple n-gram models to explore the structure of text (e.g., compressibility, entropy, etc.) can be embedded in a recurrence analysis context. As we'll see in the next section, a wide variety of measures can be extracted from these plots to quantify the diagonal and horizontal line textures in various ways. A very simple demonstration of this can be done by comparing different kinds of text. Human beings engage in qualitatively different "linguistic modes." For example, poetry or lyrical composition have fundamentally different structural expectations than, say, an off-the-cuff speech or statement. We would expect their visualization in recurrence to be quite different. Let's start with an example of this here. Carly Rae Jepsen's "Call Me Maybe," a rivetting cultural commentary on teenagers calling each other on a cell phone, shows considerable regularity in its lyrical patterns.
+
+```{r}
+rawText = readChar('data/callmemaybe.txt',
+  file.info('data/callmemaybe.txt')$size)
+chars = unlist(strsplit(rawText, " ")) # words
+uniqChars = unique(chars) 
+charSeries = as.vector(sapply(chars,function(x) {
+  which(x == uniqChars)
+}))
+crqaResults  = crqa(charSeries,charSeries,1,1,1,.0001,F,2,2,0,F,F) # we'll explain parameters later
+RP = as.matrix(crqaResults$RP) # convert into numeric non-sparse matrix
+ij = which(RP==1,arr.ind=T) # get coordinates
+plot(ij[,1],ij[,2],
+     xlab='time',ylab='time',pch=5,cex=.15)
+```
+
+A speech, however, such as Barack Obama's 2014 State of the Union exhibits quite different structure. There are, of course, many patterns of repetition, but they are considerably less regular, and appear sparser. 
+
+```{r}
+rawText = readChar('data/obama.txt',
+  file.info('data/obama.txt')$size) # portion of SoU
+chars = unlist(strsplit(rawText, " ")) # words
+uniqChars = unique(chars) 
+charSeries = as.vector(sapply(chars,function(x) {
+  which(x == uniqChars)
+}))
+crqaResults  = crqa(charSeries,charSeries,1,1,1,.0001,F,2,2,0,F,F) # we'll explain parameters later
+RP = as.matrix(crqaResults$RP) # convert into numeric non-sparse matrix
+ij = which(RP==1,arr.ind=T) # get coordinates
+plot(ij[,1],ij[,2],
+     xlab='time',ylab='time',pch=5,cex=.15)
+```
+
+Do we have to run this code each time we want to build an RP? We can design our own function. It's easy to do this on top of the `crqa' library. It might work like this.
+
+```{r}
+plotRP = function(fileName) {
+  rawText = readChar(fileName,
+      file.info(fileName)$size) # portion of SoU
+    chars = unlist(strsplit(rawText, " ")) # words
+    uniqChars = unique(chars) 
+    charSeries = as.vector(sapply(chars,function(x) {
+      which(x == uniqChars)
+    }))
+    crqaResults  = crqa(charSeries,charSeries,1,1,1,.0001,F,2,2,0,F,F) # we'll explain parameters later
+    RP = as.matrix(crqaResults$RP) # convert into numeric non-sparse matrix
+    ij = which(RP==1,arr.ind=T) # get coordinates
+    plot(ij[,1],ij[,2],
+         xlab='time',ylab='time',pch=5,cex=.15)
+}
+  
+plotRP('data/obama.txt')
+
+```
+
+
+
+
+
+
 
 
