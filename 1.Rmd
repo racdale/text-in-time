@@ -2,7 +2,7 @@
 output: pdf_document
 header-includes: \usepackage{graphicx}
 ---
-Language in Time - 1 - Rudiments
+Language in Time - 1 - Data and Recurrence Rudiments
 ========================================================
 
 To begin, let's get some data into R. We will start the manual with what is recognized as a sort of tradition in recurrence quantification of text. In the early 2000's, a demonstration of recurrence applied to text was conducted using Dr. Seuss' Green Eggs and Ham. Its small number of unique words (50) and characteristic weaving of rhyme and repetition make it a useful first demonstration. We uphold this tradition here.
@@ -23,7 +23,7 @@ rawText = readChar('data/Sam I Am.txt',
   file.info('data/Sam I Am.txt')$size)
 ```
 
-Once we have these data, let us convert them at the character level.
+Once we have these data, let us convert them at the character level. The following code takes all the unique characters in our text and converts these to numeric (nominal) identifiers. The reason for this is that recurrence algorithms (such as in `crqa`) can be adapted for use with text if we have numeric variable types. 
 
 ```{r}
 chars = unlist(strsplit(rawText, ""))
@@ -33,7 +33,7 @@ charSeries = as.vector(sapply(chars,function(x) {
 }))
 ```
 
-Our sequence of characters, encoded with unique identifiers.
+The following plots our sequence of characters, encoded with unique identifiers. We can then see the text as being, in a sense, a sequence of numeric identifiers changing over time. This is a "discrete" dynamic system that is not changing in real time, of course, but it has "time-ordered" properties that we will assume for our analysis.
 
 ```{r}
 plot(charSeries,type='p',ylab='Character code',xlab='Character order')
@@ -203,6 +203,8 @@ plotRP = function(fileName) {
 }
   
 plotRP('data/obama.txt')
+
+plotRP('data/callmemaybe.txt')
 
 ```
 
