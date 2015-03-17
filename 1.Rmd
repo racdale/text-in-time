@@ -124,7 +124,8 @@ plot(ij[,1],ij[,2],
 
 ```
 
-Plots that have "blocks" or wide swaths of occupired points reflect a system which is "trapped" in one state. This may reflect a stable state of the system that is attractor-like.
+Plots that have "blocks," wide swaths of points, reflect a system which is "trapped" in one state. This may reflect a stable state of the system that may be describable as a temporary point attractor -- one fixed state in which the system has become stable (or, really meta-stable) -- before moving on. This can be useful, for example, when looking at eye movements and attention. Focal spots of interest in a visual scene, for example, can be visualized in these plots as large swaths of rectangular regions. This would mean that the focal object of interest was fixated for a sequence of time in a stable way. As a very simple demonstration of this, consider this toy time series.
+
 
 ```{r}
 
