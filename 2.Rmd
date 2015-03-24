@@ -1,0 +1,37 @@
+---
+output: pdf_document
+header-includes: \usepackage{graphicx}
+---
+Language in Time - 2 - Quantifying Recurrence
+========================================================
+  
+So far we have seen how to build recurrence plots (RPs), and briefly described the kinds of patterns that can appear on them. These patterns are the basis of recurrence quantification analysis (RQA). In essence, RQA is a set of tools to put numbers on the RPs so that you can have a quantitative, shorthand description of what is seen. These quantities are useful to describing the system's dynamics. How much regularity does the system exhibit over time? If a system is regular, is it highly repetitive, or does it engage in more strategic short bursts of repetition? These kinds of questions can be posed through the measures of RQA, as we exemplify simply here. 
+
+
+```{r global_option,include=F}
+#http://kbroman.org/knitr_knutshell/pages/Rmarkdown.html
+knitr::opts_chunk$set(fig.width=4, fig.height=4,fig.align='center')
+
+```
+
+Like the last section, the simplest way of conveying recurrence is to compare different types of language data. In particular, transcripts of spontaneous speech will show fundamentally different dynamics than poetry or lyrics in music. These are quite distinct "linguistic modes" -- each behaving through the medium of words -- but showcasing quite distinct patterns in time.
+
+Before getting into this demonstration, let's just briefly describe these recurrence measures. Our presentation is not entirely comprehensive -- the use of RPs to quantify system dynamics is a veritable interdisciplinary literature unto itself -- but the measures that can be implemented in `crqa` are the most common. Each is described below. In parentheses is the most common shortform nomenclature for these measures.
+
+Recurrence Rate ($RR$). 
+
+Determinism ($DET$). 
+
+Average Line Length ($\bar{l}$). 
+
+Maximum Line Length ($MAX_l$). 
+
+Entropy ($ENT$).
+
+Trapping Time ($TT$).
+
+
+
+
+
+
