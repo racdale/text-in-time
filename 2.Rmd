@@ -18,7 +18,7 @@ Like the last section, the simplest way of conveying recurrence is to compare di
 
 Before getting into this demonstration, let's just briefly describe these recurrence measures. Our presentation is not entirely comprehensive -- the use of RPs to quantify system dynamics is a veritable interdisciplinary literature unto itself -- but the measures that can be implemented in `crqa` are the most common. Each is described below. In parentheses is the most common shortform nomenclature for these measures.
 
-Recurrence Rate ($RR$). 
+Recurrence Rate ($RR$). Recurrence rate is simply the overall density of points on the plot. It is usually calculated by taking the number of points and dividing it by the square of the length of the time series you are visualizing: $|RP|/N^2$. This reflects the overall extent of recurrence taking place, irrespective of the nature of the point distribution itself. It has been a fruitful measure in a variety of places, which we'll detail later (REF).
 
 Determinism ($DET$). 
 
