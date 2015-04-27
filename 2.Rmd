@@ -18,9 +18,9 @@ Like the last section, the simplest way of conveying recurrence is to compare di
 
 Before getting into this demonstration, let's just briefly describe these recurrence measures. Our presentation is not entirely comprehensive -- the use of RPs to quantify system dynamics is a veritable interdisciplinary literature unto itself -- but the measures that can be implemented in `crqa` are the most common. Each is described below. In parentheses is the most common shortform nomenclature for these measures.
 
-Recurrence Rate ($RR$). Recurrence rate is simply the overall density of points on the plot. It is usually calculated by taking the number of points and dividing it by the square of the length of the time series you are visualizing: $|RP|/N^2$. This reflects the overall extent of recurrence taking place, irrespective of the nature of the point distribution itself. It has been a fruitful measure in a variety of places, which we'll detail later (REF).
+Recurrence Rate ($RR$). Recurrence rate is simply the overall density of points on the plot. It is usually calculated by taking the number of points and dividing it by the square of the length of the time series you are visualizing: $|RP|/N^2$. This reflects the overall extent of recurrence taking place, irrespective of the nature of the point distribution itself. It has been a fruitful measure in a variety of places, which we'll detail later.
 
-Determinism ($DET$). 
+Determinism ($DET$). Determinism is among the most commonly used measures. It starts to focus on the *distribution* of recurrence points -- how are they organized on the plot? You may have multiple plots with the same $RR$, but fundamentally different organization to these points. $DET$ is a measure of how much points tend to fall on diagonal lines. These diagonal lines reflect periods of time during which the system is precisely revisiting a prior sequence of states. This regularity is referred as "determinism" because a system that has many diagonal lines means that to the extent that the system is recurrent, it is recurrent on the same or some subset of paths. Systems with low $DET$ may show punctate recurrence -- transient moments of repeating the same state -- but they are not organized as neatly -- they are not deterministic. 
 
 Average Line Length ($\bar{l}$). 
 
