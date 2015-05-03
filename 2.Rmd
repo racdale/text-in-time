@@ -22,9 +22,9 @@ Recurrence Rate ($RR$). Recurrence rate is simply the overall density of points 
 
 Determinism ($DET$). Determinism is among the most commonly used measures. It starts to focus on the *distribution* of recurrence points -- how are they organized on the plot? You may have multiple plots with the same $RR$, but fundamentally different organization to these points. $DET$ is a measure of how much points tend to fall on diagonal lines. These diagonal lines reflect periods of time during which the system is precisely revisiting a prior sequence of states. This regularity is referred as "determinism" because a system that has many diagonal lines means that to the extent that the system is recurrent, it is recurrent on the same or some subset of paths. Systems with low $DET$ may show punctate recurrence -- transient moments of repeating the same state -- but they are not organized as neatly -- they are not deterministic. 
 
-Average Line Length ($\bar{l}$). 
+Average Line Length ($\bar{l}$). This is a measure based on diagonal lines once again, and reflects the number of average points that a diagonal line extends. You may interpret this in terms of the time scale that your series is based on. If it is characters, for example, then $\bar{l}$ reflects the average number of characters ordered, if your time series is based on a 10Hz sampled systems, then $\bar{l}$ reflects the number of tenths of a second that tend to be repeated. 
 
-Maximum Line Length ($MAX_l$). 
+Maximum Line Length ($MAX_l$). There has been some discussion of maximum line length of diagonals as a proxy measure for the strength of the underlying attractor that governs the system. For example, you may have low $DET$, but a very high $MAX_l$, which means that the system may not revisit states in a very regular way, but that it revisits one very long portion of its trajectory in its phase space.
 
 Entropy ($ENT$).
 
