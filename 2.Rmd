@@ -28,9 +28,9 @@ Maximum Line Length ($MAX_l$). There has been some discussion of maximum line le
 
 Entropy ($ENT$). There is some dispute among recurrence folks about entropy. It is a difficult-to-interpret measure, according to some, but it has also been used in some interesting spots (e.g., Dixon et al., 2009). The idea of the entropy measure is that it quantifies the orderliness of the itinerary of the system. It does so by using the distribution of diagonal lines on the plot. If the system is revisiting quite an array of different paths in its reconstructed phase space -- many different diagonal line lengths -- then $ENT$ will be higher. If the system revisits sequences of states quite regularly, and so the line lengths tend to be of one or a handful of characteristic values, then $ENT$ will be lower. In the former case, we have a more disordered system. In the latter case we have a more orderly system. To do this, we use first-order Shannon entropy on the distribution of line lengths.
 
-Trapping Time ($TT$).
+Laminarity ($LAM$). Finally, laminarity, $LAM$, is a measure of how many points fall on vertical lines on the plot. This would reflect a period of time during which the system has not changed its state at all. Some would regard this as a kind of "attractor" state, which is one useful way to think about it. Another is to think of it as a measure of how fixed a system is in general, especially when using, for example, behavior codes that may remain stable for a period of time. For example, measuring or coding of emotion states may create codes that persist at 1s intervals. It is also convenient to know the characteristic length of time these vertical lines persist -- that leads us to $LAM$.
 
-
+Trapping Time ($TT$). This is to $LAM$ the way $\bar{l}$ is to $DET$. It is the average vertical line length. This is a convenient way of quantifying, in the temporal scale of the time series, that stability of the system.
 
 
 
