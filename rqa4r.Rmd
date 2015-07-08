@@ -1,0 +1,30 @@
+---
+title: "rqa4r"
+output: html_document
+---
+
+```{r  message=F}
+library(crqa) ### loading some libraries
+library(tm)
+library(zoo)
+setwd('~/Dropbox/new.projects/recurrence.recipes') ### changing working folder
+options(warn = -1) ### turn off warnings
+rawText = readChar('data/Sam I Am.txt',
+  file.info('data/Sam I Am.txt')$size) ### load in some raw text
+chars = unlist(strsplit(rawText, "")) ### convert text to characters as a numeric vector
+uniqChars = unique(chars)
+charSeries = as.vector(sapply(chars,function(x) {
+  which(x == uniqChars)
+}))
+words = unlist(strsplit(rawText, " ")) ### convert text to words as a numeric vector
+uniqWords = unique(words) 
+wordSeries = as.vector(sapply(words,function(x) {
+  which(x == uniqWords)
+}))
+crqaResults  = crqa(charSeries,charSeries,1,1,1,.0001,F,2,2,0,F,F) ### basic categorical RQA
+```
+
+
+
+
+
