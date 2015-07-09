@@ -3,7 +3,7 @@ title: "rqa4r"
 output: html_document
 ---
 
-```{r  message=F}
+```{r  message=F , fig.width=5, fig.height=5}
 library(crqa) ### loading some libraries
 library(tm)
 library(zoo)
@@ -21,7 +21,17 @@ uniqWords = unique(words)
 wordSeries = as.vector(sapply(words,function(x) {
   which(x == uniqWords)
 }))
-crqaResults  = crqa(charSeries,charSeries,1,1,1,.0001,F,2,2,0,F,F) ### basic categorical RQA
+crqaResults  = crqa(charSeries,charSeries,1,1,1,.0001,F,2,2,0,F,F) ### basic categorical RQA (characters)
+RP = as.matrix(crqaResults$RP) ### how to plot an RP from the crqa results
+ij = which(RP==1,arr.ind=T) 
+plot(ij[,1],ij[,2],
+     xlab='time (character)',ylab='time (character)',pch=15,cex=.25)
+crqaResults  = crqa(wordSeries,wordSeries,1,1,1,.0001,F,2,2,0,F,F) ### basic categorical RQA (words)
+RP = as.matrix(crqaResults$RP) 
+ij = which(RP==1,arr.ind=T) 
+plot(ij[,1],ij[,2],
+     xlab='time (word)',ylab='time (word)',pch=15,cex=.25)
+
 ```
 
 
